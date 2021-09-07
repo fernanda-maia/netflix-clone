@@ -1,0 +1,19 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+:root {
+    --black-color: #0a0a0a;
+    --gray-border: #8b8b8b;
+}
