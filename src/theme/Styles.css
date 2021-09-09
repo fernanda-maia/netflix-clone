@@ -7,13 +7,16 @@
     font-family: 'Roboto', sans-serif;
 }
 
+:root {
+    --black-color: #0a0a0a;
+    --gray-border: #353535;
+    --black-gradient: linear-gradient(180deg, var(--black-color) 0%, #131313 100%);
+}
+
 body {
     font-size: 16px;
     height: 100%;
-    width: 100%;
-}
-
-:root {
-    --black-color: #0a0a0a;
-    --gray-border: #8b8b8b;
+    width: 100vw;
+    overflow-x: hidden;
+    background: var(--black-color);
 }
