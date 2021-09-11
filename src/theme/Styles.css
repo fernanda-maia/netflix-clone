@@ -4,11 +4,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 :root {
-    --black-color: #0a0a0a;
+    --black-color: #141414;
     --gray-border: #353535;
     --black-gradient: linear-gradient(180deg, var(--black-color) 0%, #131313 100%);
 }

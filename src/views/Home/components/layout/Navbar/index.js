@@ -1,16 +1,21 @@
 import './Navbar.css';
 
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Search, Notifications, ArrowDropDown }  from '@material-ui/icons';
 
 import Logo from 'assets/images/logo.svg';
-import Profile from 'assets/images/profile.jpg';
 
+import More from './More';
+import { NavbarNav, NavLink, NetflixIcon, Avatar} from './Styled';
+
+import { USERS } from 'utils/mocks';
+import { HOME_PROFILE_HELP } from 'utils/constants/Links';
 import { changeClassName } from 'utils/constants/Functions';
-import { HOME_OPTIONS, HOME_PROFILE_HELP } from 'utils/constants/Links';
 
 
-export default function Navbar() {
+const Navbar = (props) => {
+    const { options, active } = props;
     const [navbar, setNavbar ] = useState("navbar");
 
     const navClass = {
@@ -23,42 +28,35 @@ export default function Navbar() {
 
     return (
         <nav className={navbar}>
-            <div className="navbar-nav">
-                <img className="nav-logo" src={ Logo } alt="Netflix"/>
-                {HOME_OPTIONS.map((el, i) => <span className="nav-link" key={i}>{el}</span>)}
-            </div>
+            <NavbarNav>
+                <NetflixIcon src={ Logo } alt="Netflix"/>
+                {options.map((el, i) => <NavLink key={i}>{el}</NavLink>)}
+            </NavbarNav>
             
-            <div className="navbar-nav">
+            <NavbarNav>
                 <Search  className="nav-icon" />
-                <span className="nav-link">Infantil</span>
+                <span>Infantil</span>
                 <Notifications className="nav-icon"/>
 
                 <span className="profile-info">
-                    <img src={Profile} alt="Avatar" className="avatar" />
+                    <Avatar src={active.picture} alt="Avatar" />
                     <ArrowDropDown className="profile-icon" />
-                    
-                    <div className="opt-wrapper">
-                        <div className="options">
-                            <span className="user-link">
-                                <img src={Profile} alt="Avatar" className="avatar" />
-                                <p>Fernanda</p>
-                            </span>
-                            <span className="user-link">
-                                <img src={Profile} alt="Avatar" className="avatar" />
-                                <p>Fernanda</p>
-                            </span>
-                            <span className="user-link">
-                                <img src={Profile} alt="Avatar" className="avatar" />
-                                <p>Fernanda</p>
-                            </span>
-                            <span>Gerenciar Perfis</span>
-
-                            <hr />
-                            {HOME_PROFILE_HELP.map((el, i) => <span key={i}><b>{el}</b></span>)}
-                        </div>
-                    </div>
+                    <More users={ USERS } moreOptions={ HOME_PROFILE_HELP }/>
                 </span>
-            </div>
+            </NavbarNav>
         </nav>
     );
 }
+
+Navbar.propTypes = {
+    options: PropTypes.arrayOf(PropTypes.string),
+
+    active: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        picture: PropTypes.string,
+        active: PropTypes.bool
+    }),
+
+}
+export default Navbar;
