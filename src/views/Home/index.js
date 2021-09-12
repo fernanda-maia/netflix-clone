@@ -1,5 +1,3 @@
-import './Home.css';
-
 import Slider from './components/Slider';
 import { Navbar } from './components/layout';
 import Featured from './components/Featured/Featured';

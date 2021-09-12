@@ -1,7 +1,7 @@
-import './Featured.css';
-
 import PropTypes, { string, number } from 'prop-types';
 import { PlayArrow, InfoOutlined } from '@material-ui/icons';
+
+import { Header, CoverImg, Info, MovieType, Actions, MoreInfoButton } from './Styled';
 
 import Netflix from 'assets/images/netflix-icon.svg';
 
@@ -10,29 +10,26 @@ const Featured = (props) =>{
     const { movie } = props;
 
     return (
-        <div className="featured">
-            <img src={movie.scene} alt={movie.title}/>
+        <Header imgURL={movie.scene}>
+            <Info>
+                <MovieType>
+                    <img src={ Netflix } alt="Logo" />{ movie.type }
+                </MovieType>
 
-            <div className="movie-info">
-                <div className="type">
-                    <img src={ Netflix } alt="Netflix Logo" />
-                    { movie.type }
-                </div>
                 <img src={movie.titleImg} alt={movie.title}/>
-                <p className="movie-description">{movie.description}</p>
-                <div className="actions">
+                <p>{movie.description}</p>
+
+                <Actions>
                     <button>
-                        <PlayArrow className="nav-icon" />
-                        Assistir
+                        <PlayArrow style={{transform: "scale(1.2)"}}/>Assistir
                     </button>
-                    <button className="more-info-btn">
-                        <InfoOutlined className="nav-icon" />
+                    <MoreInfoButton>
+                        <InfoOutlined style={{transform: "scale(1.2)"}}/>
                         Mais informações
-                    </button>
-                </div>
-            </div>
-            
-        </div>
+                    </MoreInfoButton>
+                </Actions>
+            </Info>
+        </Header>
     );
 }
 

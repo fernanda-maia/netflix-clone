@@ -1,9 +1,8 @@
-import './Slider.css';
-
 import { useRef, useState } from 'react';
+import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 import SlideItem from 'views/Home/components/SlideItem'
-import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
+import { Row, Title, SeeAll, SliderWrapper, SliderContainer, SliderButton } from './Styled';
 
 
 const Slider = (props) => {
@@ -35,31 +34,31 @@ const Slider = (props) => {
     }
 
     return(
-        <div className="slider">
-            <span className="slider-title">
+        <Row>
+            <Title>
                 Minha Lista
                 <ArrowForwardIos className="see-all-icon"/>
-                <span className="see-all">Ver Tudo</span>
-            </span>
+                <SeeAll />
+            </Title>
 
-            <div className="wrapper">
-               <span className="slider-btn left"
+            <SliderWrapper>
+               <SliderButton className="left"
                      style={{display: !isMoved && 'none'}} 
                      onClick={() => handleClick("left")}>
                    <ArrowBackIos className="arrow-icon"/>
-                </span> 
+                </SliderButton> 
 
-                <div className="container" ref={ sliderRef }>
+                <SliderContainer ref={ sliderRef }>
                     {movies.map((m) => <SlideItem  key={ m.id } movie={m}/>)}
-                </div>
+                </SliderContainer>
 
-                <span className="slider-btn right"
+                <SliderButton className="right"
                       style={{display: !isEnd && 'none'}} 
                       onClick={() => handleClick("right")}>
                     <ArrowForwardIos className="arrow-icon"/>
-                </span> 
-            </div>
-        </div>
+                </SliderButton> 
+            </SliderWrapper>
+        </Row>
     );
 }
 
